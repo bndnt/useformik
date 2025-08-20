@@ -1,4 +1,4 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useId } from "react";
 import css from "./FeedbackForm.module.css";
@@ -63,6 +63,7 @@ export default function FeedbackForm() {
             name="username"
             id={nameFieldId}
           />
+          <ErrorMessage name="username" component="span" />
           <label htmlFor={emailFieldId}>Email:</label>
           <Field
             className={css.field}
@@ -70,6 +71,7 @@ export default function FeedbackForm() {
             name="email"
             id={emailFieldId}
           />
+          <ErrorMessage name="email" component="span" />
           <label htmlFor={feedbacklFieldId}>Feedback:</label>
           <Field
             as="textarea"
@@ -78,6 +80,7 @@ export default function FeedbackForm() {
             id={emailFieldId}
             rows="5"
           />
+          <ErrorMessage name="message" component="span" />
           <Field
             as="select"
             name="rate"
@@ -88,6 +91,7 @@ export default function FeedbackForm() {
             <option value="neutral">Neutral</option>
             <option value="bad">Bad</option>
           </Field>
+          <ErrorMessage name="rate" component="span" />
           <button className={css.btn} type="submit">
             Submit
           </button>
