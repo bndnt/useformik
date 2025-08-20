@@ -1,4 +1,5 @@
 import { Formik, Form, Field } from "formik";
+import { useId } from "react";
 import css from "./FeedbackForm.module.css";
 
 const initialValues = {
@@ -7,6 +8,8 @@ const initialValues = {
 };
 
 export default function FeedbackForm() {
+  const nameFieldId = useId();
+  const emailFieldId = useId();
   //values - об'єкт значень полів форми в момент її відправки.
   // actions - об'єкт з допоміжними методами. Наприклад, метод resetForm
 
@@ -26,8 +29,20 @@ export default function FeedbackForm() {
         {/* Компонент Formik не стилізується, оскільки не рендерить жодного тегу, а зберігає логіку роботи з формою. */}
         <Form className={css.form}>
           {/* Для додавання полів форми використовується компонент Field, який за замовчуванням рендерить тег input. Кожному полю обов'язково потрібно вказати атрибут name, так само, як і при роботі з звичайним тегом input. */}
-          <Field className={css.field} type="text" name="username" />
-          <Field className={css.field} type="email" name="email" />
+          <label htmlFor={nameFieldId}>Username</label>
+          <Field
+            className={css.field}
+            type="text"
+            name="username"
+            id={nameFieldId}
+          />
+          <label htmlFor={emailFieldId}></label>
+          <Field
+            className={css.field}
+            type="email"
+            name="email"
+            id={emailFieldId}
+          />
           <button className={css.btn} type="submit">
             Submit
           </button>
