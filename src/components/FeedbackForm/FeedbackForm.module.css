@@ -1,0 +1,16 @@
+.field {
+  display: block;
+  margin: 10px 0;
+  width: 100%;
+}
+.btn {
+  width: 150px;
+  height: 30px;
+}
+.form {
+  width: calc(100vw / 2);
+  margin: 0 auto;
+  padding: 30px;
+  box-shadow: 1px 10px 10px 15px lightslategrey;
+  border-radius: 15px;
+}
