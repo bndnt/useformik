@@ -6,12 +6,14 @@ const initialValues = {
   username: "",
   email: "",
   message: "",
+  rate: "good",
 };
 
 export default function FeedbackForm() {
   const nameFieldId = useId();
   const emailFieldId = useId();
   const feedbacklFieldId = useId();
+  const rateFieldId = useId();
   //values - об'єкт значень полів форми в момент її відправки.
   // actions - об'єкт з допоміжними методами. Наприклад, метод resetForm
 
@@ -53,6 +55,16 @@ export default function FeedbackForm() {
             id={emailFieldId}
             rows="5"
           />
+          <Field
+            as="select"
+            name="rate"
+            id={rateFieldId}
+            className={css.select}
+          >
+            <option value="good">Good</option>
+            <option value="neutral">Neutral</option>
+            <option value="bad">Bad</option>
+          </Field>
           <button className={css.btn} type="submit">
             Submit
           </button>
