@@ -1,6 +1,25 @@
 import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
 import { useId } from "react";
 import css from "./FeedbackForm.module.css";
+
+// У цьому об'єкті описуємо валідацію для кожної властивості об'єкта initialValues.
+const FeedbackSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(5, "Too short!")
+    .max(20, "Too long!")
+    .required("Required!"),
+  email: Yup.string()
+    .email("Enter a valid email, please :)")
+    .required("Required field!"),
+  message: Yup.string()
+    .min(3, "Too short(")
+    .max(100, "Too long")
+    .required("Required field"),
+  rate: Yup.string()
+    .oneOf(["good", "neutral", "bad"])
+    .required("Required field"),
+});
 
 const initialValues = {
   username: "",
@@ -29,7 +48,11 @@ export default function FeedbackForm() {
     <>
       {/* Для додавання полів форми використовується компонент Field, який за замовчуванням рендерить тег input. Кожному полю обов'язково потрібно вказати атрибут name, так само, як і при роботі з звичайним тегом input. */}
       {/* initialValues - об'єкт початкових значень полів, наразі передамо порожній об'єкт. onSubmit - функція, яка буде викликана при сабміті форми. */}
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={FeedbackSchema}
+      >
         {/* Компонент Formik не стилізується, оскільки не рендерить жодного тегу, а зберігає логіку роботи з формою. */}
         <Form className={css.form}>
           {/* Для додавання полів форми використовується компонент Field, який за замовчуванням рендерить тег input. Кожному полю обов'язково потрібно вказати атрибут name, так само, як і при роботі з звичайним тегом input. */}
