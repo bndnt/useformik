@@ -1,5 +1,10 @@
 import { Formik, Form, Field } from "formik";
 import css from "./FeedbackForm.module.css";
+
+const initialValues = {
+  username: "",
+  email: "",
+};
 export default function FeedbackForm() {
   return (
     <>
@@ -8,7 +13,7 @@ export default function FeedbackForm() {
       вказати атрибут name, так само, як і при роботі з звичайним тегом input. */}
       {/* initialValues - об'єкт початкових значень полів, наразі передамо порожній
       об'єкт. onSubmit - функція, яка буде викликана при сабміті форми. */}
-      <Formik initialValues={{}} onSubmit={() => {}}>
+      <Formik initialValues={initialValues} onSubmit={() => {}}>
         {/* Компонент Formik не стилізується, оскільки не рендерить жодного тегу, а
         зберігає логіку роботи з формою. */}
         <Form className={css.form}>
@@ -18,7 +23,7 @@ export default function FeedbackForm() {
           input. */}
           <Field className={css.field} type="text" name="username" />
           <Field className={css.field} type="email" name="email" />
-          <button classname={css.btn} type="submit">
+          <button className={css.btn} type="submit">
             Submit
           </button>
         </Form>
